@@ -1,7 +1,14 @@
 FROM node:14
-WORKDIR /app
-ADD package.json /app/package.json
+WORKDIR /docker-practice-app
+COPY package.json /docker-practice-app/package.json
+# COPY package*.json ./
+# COPY package.json package-lock.lock ./
 RUN npm install
-ADD . /app
+# Copy env
+# COPY .env.docker /var/www/backend/.env
+ADD . /docker-practice-app
+# COPY . . 
+# COPY --from=development /docker-practice-app/dist ./dist
 EXPOSE 3000
-CMD ["npm","run","start"]
+# CMD ["node", "dist/main"]
+CMD npm run start
